@@ -1,12 +1,8 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as stuffActions from '../actions/stuffActions';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class stuffList extends React.Component {
+export default class Stuff extends React.Component {
     componentWillMount() {
-        console.log(this.props)
         this.props.stuffActions.fetchStuff();
     }
 
@@ -37,24 +33,7 @@ class stuffList extends React.Component {
     }
 }
 
-stuffList.propTypes = {
+Stuff.propTypes = {
     stuffActions: PropTypes.object,
     stuff: PropTypes.array
 };
-
-function mapStateToProps(state) {
-    return {
-        stuff: state.stuff
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        stuffActions: bindActionCreators(stuffActions, dispatch)
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(stuffList);
